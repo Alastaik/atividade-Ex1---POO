@@ -13,7 +13,7 @@ public class TesteEtapa3Join {
 
     public static void main(String[] args) {
         System.out.println("================================================================================");
-        System.out.println("        ETAPA 3: CONSULTA PARAMETRIZADA COM INNER JOIN (PRODUTO + FORNECEDOR)   ");
+        System.out.println("        ETAPA 3: CONSULTA COM INNER JOIN (PRODUTO + FORNECEDOR)   ");
         System.out.println("================================================================================");
 
         FornecedorDAO fornecedorDAO = new FornecedorDAO();
@@ -25,29 +25,31 @@ public class TesteEtapa3Join {
 
         try {
             System.out.println("\n[1] Criando Fornecedor para o teste de vínculo...");
-            fornecedor = new Fornecedor("Alpha Tech Informática Ltda", "(62) 3555-8888");
+            fornecedor = new Fornecedor("Alpha Ltda", "(62) 3555-8888");
             fornecedorDAO.inserir(fornecedor);
-            System.out.println("✔ Fornecedor criado com ID: " + fornecedor.getIdFornecedor());
+            System.out.println("Fornecedor criado com ID: " + fornecedor.getIdFornecedor());
 
-            System.out.println("\n[2] Cadastrando produtos vinculados ao Fornecedor ID " + fornecedor.getIdFornecedor() + "...");
+            System.out.println(
+                    "\n[2] Cadastrando produtos vinculados ao Fornecedor ID " + fornecedor.getIdFornecedor() + "...");
 
             prod1 = new Produto();
-            prod1.setNome("Monitor Gamer LED 27 pol 165Hz");
+            prod1.setNome("Monitor");
             prod1.setPreco(1299.90);
             prod1.setEstoque(20);
             prod1.setIdFornecedor(fornecedor.getIdFornecedor());
             produtoDAO.inserir(prod1);
-            System.out.println("✔ Produto 1 criado [ID " + prod1.getIdProduto() + "]: " + prod1.getNome());
+            System.out.println("Produto 1 criado [ID " + prod1.getIdProduto() + "]: " + prod1.getNome());
 
             prod2 = new Produto();
-            prod2.setNome("Mouse Sem Fio Ergonômico 4000 DPI");
+            prod2.setNome("Mouse");
             prod2.setPreco(189.50);
             prod2.setEstoque(45);
             prod2.setIdFornecedor(fornecedor.getIdFornecedor());
             produtoDAO.inserir(prod2);
-            System.out.println("✔ Produto 2 criado [ID " + prod2.getIdProduto() + "]: " + prod2.getNome());
+            System.out.println("Produto 2 criado [ID " + prod2.getIdProduto() + "]: " + prod2.getNome());
 
-            System.out.println("\n[3] Executando produtoDAO.listarProdutosPorFornecedor(" + fornecedor.getIdFornecedor() + "):");
+            System.out.println(
+                    "\n[3] Executando produtoDAO.listarProdutosPorFornecedor(" + fornecedor.getIdFornecedor() + "):");
             List<Produto> produtosDoFornecedor = produtoDAO.listarProdutosPorFornecedor(fornecedor.getIdFornecedor());
 
             System.out.println("--------------------------------------------------------------------------------");
@@ -64,18 +66,19 @@ public class TesteEtapa3Join {
                         p.getNomeFornecedor());
             }
             System.out.println("--------------------------------------------------------------------------------");
-            System.out.println("✔ Consulta INNER JOIN parametrizada executada com sucesso! Itens retornados: " + produtosDoFornecedor.size());
+            System.out.println(
+                    "Consulta INNER JOIN executada com sucesso! Itens retornados: " + produtosDoFornecedor.size());
 
             System.out.println("\n[4] Limpando registros temporários de teste...");
             produtoDAO.remover(prod1.getIdProduto());
             produtoDAO.remover(prod2.getIdProduto());
             fornecedorDAO.remover(fornecedor.getIdFornecedor());
-            System.out.println("✔ Registros de teste removidos com sucesso.");
+            System.out.println("Registros de teste removidos com sucesso.");
 
-            System.out.println("\n>>> ETAPA 3 CONCLUÍDA COM 100% DE SUCESSO! <<<");
+            System.out.println("\n>>> ETAPA 3 CONCLUÍDA COM SUCESSO! <<<");
 
         } catch (SQLException e) {
-            System.err.println("✖ Erro ao executar teste da Etapa 3: " + e.getMessage());
+            System.err.println("Erro ao executar teste da Etapa 3: " + e.getMessage());
             e.printStackTrace();
         }
     }

@@ -1,8 +1,8 @@
 -- Dados de exemplo
 INSERT INTO fornecedor (nome, telefone) VALUES 
-('Tech Distribuidora Brasil Ltda', '(11) 3456-7890'),
-('Mega Eletrônicos Atacadista', '(62) 3222-1100'),
-('Logística & Componentes Globais', '(21) 98765-4321')
+('Tech Ltda', '(62) 3456-7890'),
+('Mega loja', '(62) 3222-1100'),
+('Logística S', '(99) 98765-4321')
 ON CONFLICT DO NOTHING;
 
 -- Associar produtos ao primeiro fornecedor
