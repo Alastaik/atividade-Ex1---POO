@@ -12,12 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * Camada de Acesso a Dados: ClienteDAO
- * 
- * Disciplina: ADS1253 - POO com Banco de Dados
- * Professor: Welington Júlio
- */
+// Cliente DAO - Acesso
 public class ClienteDAO {
 
     private Connection getConnection() throws SQLException {

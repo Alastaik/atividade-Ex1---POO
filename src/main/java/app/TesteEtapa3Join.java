@@ -8,15 +8,7 @@ import modelo.Produto;
 import java.sql.SQLException;
 import java.util.List;
 
-/**
- * Demonstração e Validação da ETAPA 3:
- * Consulta Parametrizada com INNER JOIN
- * 
- * - Cadastra um fornecedor específico
- * - Vincula múltiplos produtos a este fornecedor através de id_fornecedor
- * - Invoca listarProdutosPorFornecedor(int idFornecedor)
- * - Exibe o resultado da junção segura no console
- */
+// Teste JOIN
 public class TesteEtapa3Join {
 
     public static void main(String[] args) {
@@ -32,13 +24,11 @@ public class TesteEtapa3Join {
         Produto prod2 = null;
 
         try {
-            // 1. Cadastrar um fornecedor para o teste do JOIN
             System.out.println("\n[1] Criando Fornecedor para o teste de vínculo...");
             fornecedor = new Fornecedor("Alpha Tech Informática Ltda", "(62) 3555-8888");
             fornecedorDAO.inserir(fornecedor);
             System.out.println("✔ Fornecedor criado com ID: " + fornecedor.getIdFornecedor());
 
-            // 2. Criar e vincular dois produtos ao fornecedor
             System.out.println("\n[2] Cadastrando produtos vinculados ao Fornecedor ID " + fornecedor.getIdFornecedor() + "...");
 
             prod1 = new Produto();
@@ -57,7 +47,6 @@ public class TesteEtapa3Join {
             produtoDAO.inserir(prod2);
             System.out.println("✔ Produto 2 criado [ID " + prod2.getIdProduto() + "]: " + prod2.getNome());
 
-            // 3. Executar a consulta parametrizada com INNER JOIN
             System.out.println("\n[3] Executando produtoDAO.listarProdutosPorFornecedor(" + fornecedor.getIdFornecedor() + "):");
             List<Produto> produtosDoFornecedor = produtoDAO.listarProdutosPorFornecedor(fornecedor.getIdFornecedor());
 
@@ -77,7 +66,6 @@ public class TesteEtapa3Join {
             System.out.println("--------------------------------------------------------------------------------");
             System.out.println("✔ Consulta INNER JOIN parametrizada executada com sucesso! Itens retornados: " + produtosDoFornecedor.size());
 
-            // 4. Limpeza pós-teste
             System.out.println("\n[4] Limpando registros temporários de teste...");
             produtoDAO.remover(prod1.getIdProduto());
             produtoDAO.remover(prod2.getIdProduto());

@@ -1,18 +1,11 @@
--- ==============================================================================
--- DISCIPLINA: ADS1253 - Programação Orientada a Objetos com Banco de Dados
--- PROFESSOR: Welington Júlio
--- CURSO: Análise e Desenvolvimento de Sistemas (ADS) - PUC Goiás
--- ATIVIDADE: Encontro 14 - Atividade Estruturada 1 (Ex1)
--- ==============================================================================
-
--- TODO 1.1: Crie a tabela fornecedor (id_fornecedor SERIAL PRIMARY KEY, nome VARCHAR(100) NOT NULL, telefone VARCHAR(20))
+-- Tabela fornecedor
 CREATE TABLE IF NOT EXISTS fornecedor (
     id_fornecedor SERIAL PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
     telefone VARCHAR(20)
 );
 
--- TODO 1.2: Adicione a coluna id_fornecedor em produto e crie a FOREIGN KEY com ON DELETE RESTRICT
+-- Coluna e FK em produto
 ALTER TABLE produto 
     ADD COLUMN IF NOT EXISTS id_fornecedor INTEGER;
 
@@ -31,3 +24,5 @@ BEGIN
             ON DELETE RESTRICT;
     END IF;
 END $$;
+
+-- ON DELETE RESTRICT: impede a exclusão do fornecedor caso existam produtos vinculados a ele.

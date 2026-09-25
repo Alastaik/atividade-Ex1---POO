@@ -7,16 +7,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * Demonstração e Validação da ETAPA 2:
- * CRUD Completo com FornecedorDAO
- * 
- * - Inserção recuperando ID gerado automaticamente (SERIAL / Statement.RETURN_GENERATED_KEYS)
- * - Consulta por ID e Listagem Geral reaproveitando mapearFornecedor()
- * - Atualização dos dados (nome e telefone) via PreparedStatement
- * - Busca parcial por nome via LIKE parametrizado
- * - Exclusão via PreparedStatement
- */
+// Teste CRUD Fornecedor
 public class TesteEtapa2FornecedorCRUD {
 
     public static void main(String[] args) {
@@ -27,7 +18,6 @@ public class TesteEtapa2FornecedorCRUD {
         FornecedorDAO fornecedorDAO = new FornecedorDAO();
 
         try {
-            // 1. CREATE: Inserir novo fornecedor e recuperar chave gerada
             System.out.println("\n[1] TESTANDO INSERÇÃO (CREATE):");
             Fornecedor novo = new Fornecedor();
             novo.setNome("Distribuidora Silicon Valley Peças");
@@ -38,7 +28,6 @@ public class TesteEtapa2FornecedorCRUD {
             System.out.println("  -> ID Gerado pelo PostgreSQL: " + novo.getIdFornecedor());
             System.out.println("  -> Dados: " + novo);
 
-            // 2. READ: Buscar por ID recém-gerado
             System.out.println("\n[2] TESTANDO BUSCA POR ID (READ):");
             Optional<Fornecedor> opt = fornecedorDAO.buscarPorId(novo.getIdFornecedor());
             if (opt.isPresent()) {
@@ -47,18 +36,15 @@ public class TesteEtapa2FornecedorCRUD {
                 System.err.println("✖ Falha: Fornecedor não encontrado com o ID " + novo.getIdFornecedor());
             }
 
-            // 3. UPDATE: Atualizar dados do fornecedor
             System.out.println("\n[3] TESTANDO ATUALIZAÇÃO (UPDATE):");
             novo.setNome("Silicon Valley Componentes e Tecnologia S.A.");
             novo.setTelefone("(62) 99888-7766");
             fornecedorDAO.atualizar(novo);
             System.out.println("✔ Fornecedor atualizado com sucesso!");
 
-            // Confirmação da atualização
             Optional<Fornecedor> atualizadoOpt = fornecedorDAO.buscarPorId(novo.getIdFornecedor());
             atualizadoOpt.ifPresent(f -> System.out.println("  -> Estado pós-update: " + f));
 
-            // 4. READ: Busca por trecho de nome (LIKE)
             System.out.println("\n[4] TESTANDO BUSCA PARCIAL POR NOME:");
             List<Fornecedor> buscaParcial = fornecedorDAO.buscarPorNomeParcial("Silicon");
             System.out.println("✔ Fornecedores encontrados com 'Silicon': " + buscaParcial.size());
@@ -66,7 +52,6 @@ public class TesteEtapa2FornecedorCRUD {
                 System.out.println("  -> " + f);
             }
 
-            // 5. READ: Listagem completa
             System.out.println("\n[5] TESTANDO LISTAGEM GERAL (listarTodos):");
             List<Fornecedor> todos = fornecedorDAO.listarTodos();
             System.out.println("✔ Total de fornecedores cadastrados: " + todos.size());
@@ -74,12 +59,10 @@ public class TesteEtapa2FornecedorCRUD {
                 System.out.println("  -> [ID " + f.getIdFornecedor() + "] " + f.getNome() + " | Tel: " + f.getTelefone());
             }
 
-            // 6. DELETE: Remover registro
             System.out.println("\n[6] TESTANDO REMOÇÃO (DELETE):");
             fornecedorDAO.remover(novo.getIdFornecedor());
             System.out.println("✔ Fornecedor ID " + novo.getIdFornecedor() + " removido com sucesso!");
 
-            // Verifica se realmente foi excluído
             Optional<Fornecedor> excluidoOpt = fornecedorDAO.buscarPorId(novo.getIdFornecedor());
             if (excluidoOpt.isEmpty()) {
                 System.out.println("✔ Comprovado: Registro não existe mais no banco de dados.");

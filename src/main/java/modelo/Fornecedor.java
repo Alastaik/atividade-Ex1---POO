@@ -2,8 +2,7 @@ package modelo;
 
 import java.util.Objects;
 
-//Modelo Fornecedor
-
+// Modelo Fornecedor
 public class Fornecedor {
 
     private Integer idFornecedor;

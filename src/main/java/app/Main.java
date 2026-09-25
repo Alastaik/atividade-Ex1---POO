@@ -2,17 +2,12 @@ package app;
 
 import java.util.Scanner;
 
-/**
- * Ponto de Entrada Principal da Aplicação
- * Disciplina: ADS1253 - POO com Banco de Dados
- * Professor: Welington Júlio
- */
+// Ponto de entrada
 public class Main {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        // Se houver parâmetros ou execução não interativa, roda diretamente o teste integrado
         if (args.length > 0 && args[0].equalsIgnoreCase("--batch")) {
             TesteEtapasCompleto.main(args);
             return;
@@ -38,7 +33,7 @@ public class Main {
 
         switch (opcao) {
             case "1":
-                TesteAtividadeEstruturada1.main(args);
+                executarTesteRoteiro(args);
                 break;
             case "2":
                 TesteEtapasCompleto.main(args);
@@ -57,8 +52,18 @@ public class Main {
                 break;
             default:
                 System.out.println("\nExecutando teste oficial do roteiro...");
-                TesteAtividadeEstruturada1.main(args);
+                executarTesteRoteiro(args);
                 break;
+        }
+    }
+
+    private static void executarTesteRoteiro(String[] args) {
+        try {
+            Class.forName("TesteAtividadeEstruturada1")
+                    .getMethod("main", String[].class)
+                    .invoke(null, (Object) args);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

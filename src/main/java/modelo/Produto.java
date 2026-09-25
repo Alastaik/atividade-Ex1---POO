@@ -2,16 +2,15 @@ package modelo;
 
 import java.util.Objects;
 
-//Modelo Produto
-
+// Modelo Produto
 public class Produto {
 
     private Integer idProduto;
     private String nome;
     private Double preco;
     private Integer estoque;
-    private Integer idFornecedor; // FK
-    private String nomeFornecedor; // Para consultas com JOIN
+    private Integer idFornecedor;
+    private String nomeFornecedor;
 
     public Produto() {
     }
