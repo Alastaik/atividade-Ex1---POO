@@ -128,6 +128,12 @@ public class TesteEtapasCompleto {
             System.out.println("    ----------------------------------------------------------------------------");
             System.out.println("  ✔ INNER JOIN executado e validado com sucesso!");
 
+            System.out.println("\n  • Executando fornecedorDAO.listarProdutosPorFornecedor(" + idFornecedorTeste + ") [Formato Roteiro]:");
+            List<String> linhasRoteiro = fornecedorDAO.listarProdutosPorFornecedor(idFornecedorTeste);
+            for (String linha : linhasRoteiro) {
+                System.out.println("    -> " + linha);
+            }
+
         } catch (SQLException e) {
             System.err.println("✖ Erro na Etapa 3: " + e.getMessage());
         }

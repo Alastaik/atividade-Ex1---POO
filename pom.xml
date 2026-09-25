@@ -18,7 +18,7 @@
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <postgresql.version>42.7.3</postgresql.version>
-        <exec.mainClass>app.TesteEtapasCompleto</exec.mainClass>
+        <exec.mainClass>TesteAtividadeEstruturada1</exec.mainClass>
     </properties>
 
     <dependencies>

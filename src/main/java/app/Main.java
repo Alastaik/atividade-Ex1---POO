@@ -23,10 +23,11 @@ public class Main {
         System.out.println("     PUC Goiás - Análise e Desenvolvimento de Sistemas                          ");
         System.out.println("================================================================================");
         System.out.println("Escolha uma opção para executar:");
-        System.out.println(" 1 - Executar Bateria Completa (Etapas 1, 2, 3 e 4)");
-        System.out.println(" 2 - Etapa 2: Teste CRUD FornecedorDAO");
-        System.out.println(" 3 - Etapa 3: Teste Consulta INNER JOIN (Produto x Fornecedor)");
-        System.out.println(" 4 - Etapa 4: Teste de Integridade Referencial (ON DELETE RESTRICT)");
+        System.out.println(" 1 - Executar Teste Oficial do Roteiro (TesteAtividadeEstruturada1)");
+        System.out.println(" 2 - Executar Bateria Integrada Completa (Etapas 0 a 4)");
+        System.out.println(" 3 - Etapa 2: Teste Isolado CRUD FornecedorDAO");
+        System.out.println(" 4 - Etapa 3: Teste Isolado INNER JOIN (Produto x Fornecedor)");
+        System.out.println(" 5 - Etapa 4: Teste Isolado Integridade Referencial (ON DELETE RESTRICT)");
         System.out.println(" 0 - Sair");
         System.out.print("Opção: ");
 
@@ -36,22 +37,27 @@ public class Main {
         }
 
         switch (opcao) {
+            case "1":
+                TesteAtividadeEstruturada1.main(args);
+                break;
             case "2":
-                TesteEtapa2FornecedorCRUD.main(args);
+                TesteEtapasCompleto.main(args);
                 break;
             case "3":
-                TesteEtapa3Join.main(args);
+                TesteEtapa2FornecedorCRUD.main(args);
                 break;
             case "4":
+                TesteEtapa3Join.main(args);
+                break;
+            case "5":
                 TesteEtapa4IntegridadeReferencial.main(args);
                 break;
             case "0":
                 System.out.println("Encerrando aplicação...");
                 break;
-            case "1":
             default:
-                System.out.println("\nExecutando teste integrado de todas as etapas...");
-                TesteEtapasCompleto.main(args);
+                System.out.println("\nExecutando teste oficial do roteiro...");
+                TesteAtividadeEstruturada1.main(args);
                 break;
         }
     }

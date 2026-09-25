@@ -117,15 +117,26 @@ public List<Produto> listarProdutosPorFornecedor(int idFornecedor) throws SQLExc
 
 ### 🔹 ETAPA 4: Teste de Integridade Referencial (0,3 pt)
 
-Implementado na classe [`TesteEtapa4IntegridadeReferencial`](src/main/java/app/TesteEtapa4IntegridadeReferencial.java):
+Implementado na classe oficial [`TesteAtividadeEstruturada1`](src/main/java/TesteAtividadeEstruturada1.java) (e complementado em [`TesteEtapa4IntegridadeReferencial`](src/main/java/app/TesteEtapa4IntegridadeReferencial.java)):
 1. Cadastra um fornecedor via `FornecedorDAO`;
 2. Cadastra um produto vinculado a esse fornecedor via `ProdutoDAO`;
-3. Tenta remover o fornecedor diretamente chamando `fornecedorDAO.remover(idFornecedor)`;
+3. Tenta remover o fornecedor diretamente chamando `dao.remover(idFornecedor)`;
 4. Captura a exceção `SQLException` real disparada pelo PostgreSQL:
    - **SQLState:** `23001` / `23503` (`foreign_key_violation`);
    - **Mensagem real do PostgreSQL:** `ERRO: update or delete on table "fornecedor" violates RESTRICT setting of foreign key constraint "fk_produto_fornecedor" on table "produto"`;
 5. **Documentação da Recusa:** O banco bloqueou a operação porque a restrição `ON DELETE RESTRICT` exige que nenhum produto aponte para o fornecedor no momento de sua exclusão;
 6. Limpeza controlada realizada na ordem correta: remoção do produto filho em primeiro lugar, seguida pela remoção do fornecedor pai.
+
+---
+
+## ✅ Checklist de Entrega no Microsoft Teams
+
+* [x] **Script SQL com DDL e justificativa da regra ON DELETE RESTRICT executado:** Arquivos [`atividade_estruturada_1.sql`](atividade_estruturada_1.sql) e [`sql/01_etapa1_ddl.sql`](sql/01_etapa1_ddl.sql).
+* [x] **Classe modelo `Fornecedor.java` criada no pacote `modelo`:** Com atributos `idFornecedor`, `nome`, `telefone`, construtores, getters e setters.
+* [x] **Classe `FornecedorDAO.java` completa:** Com método de mapeamento centralizado `mapearFornecedor()`, CRUD completo e método `listarProdutosPorFornecedor(int idFornecedor)` unindo tabelas com `INNER JOIN`.
+* [x] **Classe executável `TesteAtividadeEstruturada1.java` criada e testada no console:** Seguindo rigorosamente a estrutura e os TODOs do roteiro.
+* [x] **Captura da `SQLException` do PostgreSQL comprovando o bloqueio da integridade referencial:** Captura via bloco `try-catch` com documentação clara no console.
+* [x] **Arquivos do projeto estruturados para envio e sincronizados no GitHub:** [https://github.com/Alastaik/atividade-Ex1---POO](https://github.com/Alastaik/atividade-Ex1---POO).
 
 ---
 
